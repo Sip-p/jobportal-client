@@ -11,6 +11,7 @@ import axios from 'axios'
 const Managejobs = () => {
   const [alljobs,setAlljobs]=useState([])
   const {backendUrl,companyToken, }=useContext(AppContext)
+  const [applicants,setApplicants]=useState(0)
   const getDetails=async(e)=>
 {
  try {
@@ -30,18 +31,37 @@ if (data.success) {
 const changeJobVisibility=async(id)=>{
   try {
     const {data}=await axios.post(backendUrl+'/api/company/change-visibility',{id},{headers:{token:companyToken}})
-    console.log("the data is",data)
+     
  if(data.success){
   toast.success(data.message)
+  setAlljobs(prevJobs => prevJobs.map(job => job._id === id ? { ...job, visible: !job.visible } : job));
  }
   } catch (error) {
     
   }
 }
+
+// const noOfApplicants=async()=>{
+//   try {
+//     console.log("current job is",alljobs[0])
+//     const id=alljobs[0]?._id
+//     const {data}=await axios.post(backendUrl+'/api/company/no-of-applicants',{id}, {headers:{token:companyToken}})
+//     if(data.success){
+//       console.log(data)
+//       setApplicants(data.noOfApplicants)
+//     }
+//   } catch (error) {
+//     toast.error(error.message)
+//   }
+// }
+
+
+
 useEffect(()=>{
    getDetails()
+  
 },[])
-  const navigate = useNavigate();
+ 
   return (
     <div className='container p-4 max-w-5xl'>
       <div className='overflow-x-auto overflow-hidden '>
@@ -64,7 +84,7 @@ useEffect(()=>{
                   <td className='py-2 px-4 border-b'>{job.title}</td>
                   <td className='py-2 px-4 border-b max-sm:hidden'>{moment(job.date).format('ll')}</td>
                   <td className='py-2 px-4 border-b max-sm:hidden'>{job.location}</td>
-                  <td className='py-2 px-4 border-b'>{job.applicants}</td>
+                  <td className='py-2 px-4 border-b'> {job.applicants}</td>
                   <td className='py-2 px-4 border-b scale-125 text-center'>
                     <input type='checkbox' checked={job.visible} onChange={()=>changeJobVisibility(job._id)}  />
                   </td>

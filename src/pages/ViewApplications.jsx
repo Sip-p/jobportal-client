@@ -50,27 +50,27 @@ const updateApplicationStatus=async(id,status)=>{
     <div className="m-9 overflow-x-auto">
       <table className="border-2 w-full text-left">
         <thead>
-          <tr>
-            <th className="px-4 py-2 max-sm:hidden ">#</th>
-            <th className="px-4 py-2 max-sm:hidden">User Name</th>
-            <th className="px-4 py-2 bg-green-500">Job Title</th>
-            <th className="px-4 py-2 bg-blue-500">Location</th>
-            <th className="px-4 py-2  ">Resume</th>
-            <th className="px-4 py-2 bg-yellow-600  ">Action</th>
+          <tr className=" "> 
+            <th className="px-4 py-2 max-sm:hidden bg-gradient-to-r from-purple-800 to-purple-950 text-white">#</th>
+            <th className="px-4 py-2 max-sm:hidden bg-gradient-to-r from-purple-800 to-purple-950 text-white">User Name</th>
+            <th className="px-4 py-2 bg-gradient-to-r from-purple-800 to-purple-950 text-white">Job Title</th>
+            <th className="px-4 py-2 bg-gradient-to-r from-purple-800 to-purple-950 text-white">Location</th>
+            <th className="px-4 py-2 bg-gradient-to-r from-purple-800 to-purple-950 text-white">Resume</th>
+            <th className="px-4 py-2 bg-gradient-to-r from-purple-800 to-purple-950  text-white">Action</th>
           </tr>
         </thead>
         <tbody>
           {applicants.map((item, idx) => (
             <tr key={idx} className="border-b">
-              <td className="px-4 py-2 bg-red-300 max-sm:hidden">{idx+1}</td>
-              <td className="px-4 py-2 flex items-center max-sm:hidden">
+              <td className="px-4 py-2   max-sm:hidden">{idx+1}</td>
+              <td className="px-4 py-2 flex items-center max-sm:hidden  ">
                 {console.log("item is",item)}
-                <img src={item.imgSrc} alt="" className="h-10 w-10 rounded-full mr-2" />
+                {/* <img src={item.imgSrc} alt="" className="h-10 w-10 rounded-full mr-2 " /> */}
                 <span className=''>{item.name}</span>
               </td>
-              <td className="px-4 py-2 bg-green-400">{item.jobTitle}</td>
-              <td className="px-4 py-2 bg-blue-400">{item.location}</td>
-          <td className="px-4 py-2 bg-pink-300">
+              <td className="px-4 py-2  ">{item.jobTitle}</td>
+              <td className="px-4 py-2  ">{item.location}</td>
+          <td className="px-4 py-2  ">
   {item.resume ? (
     <a
       href={item.resume}
@@ -85,7 +85,7 @@ const updateApplicationStatus=async(id,status)=>{
     <span className="text-gray-500">No resume</span>
   )}
 </td>
-              <td className="px-4 py-2">
+              <td className="px-4 py-2  ">
                 {item.status==='pending'?<> <button className="w-full px-4 py-1 text-blue-500 hover:bg-gray-100 bg-green-300 rounded-md" onClick={()=>updateApplicationStatus(item._id,'Accepted')}>
                   Accept
                 </button>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import { assets } from "../assets/assets";
 const ChatBot = () => {
   const [messages, setMessages] = useState([
     { sender: "bot", text: "Hi 👋, how can I help you today?" },
@@ -28,7 +29,18 @@ console.log("Chatbot response:", data);
   };
 
   return (
-    <div className="fixed bottom-4 right-4 w-80 bg-black shadow-lg rounded-lg p-3">
+    <>      <button className=" fixed chatbot-icon bg-gradient-to-r from-purple-800 to-purple-950   p-2 bottom-2 right-2   h-10 w-10 rounded-lg " onClick={()=>{
+      document.querySelector('.chatbot').classList.remove('hidden')
+      document.querySelector('.chatbot-icon').classList.add('hidden')
+    }}>💬</button>
+ 
+    <div className=" chatbot fixed bottom-4 right-4 w-80 bg-black shadow-lg rounded-lg p-3 hidden ">
+       <button className="bg-white  right-2 top-2 p-1 rounded-full absolute" onClick={()=>{
+        document.querySelector('.chatbot').classList.add('hidden')
+        document.querySelector('.chatbot-icon').classList.remove('hidden')
+      }}>
+        <img src= {assets.cross_icon}/>
+        </button>
       <div className="h-64 overflow-y-auto mb-2 border-b">
         {messages.map((msg, i) => (
           <div
@@ -66,6 +78,7 @@ console.log("Chatbot response:", data);
         </button>
       </div>
     </div>
+    </>
   );
 };
 

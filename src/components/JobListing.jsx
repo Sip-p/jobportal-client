@@ -14,7 +14,7 @@ const hasTitle = searchFilter.title.trim() !== "";
 const hasLocation = searchFilter.location.trim() !== "";
 const [categoryFilter, setCategoryFilter] = useState([]);
 const [locationFilter, setLocationFilter] = useState([]);
-const {backendUrl,appliedJobs,setAppliedJobs}=useContext(AppContext)
+const {backendUrl,appliedJobs,setAppliedJobs,userData}=useContext(AppContext)
 const getAllJobs=async()=>{
   const {data}=await axios.get(backendUrl+'/api/jobs')
   console.log(data)
@@ -96,20 +96,24 @@ const paginatedJobs = filteredJobs.slice(currentPage * 6, currentPage * 6 + 6);
 {
     isSearched && (searchFilter.title !==""|| searchFilter.location !=="") &&
     <div className='flex flex-col'>
-    <h3 className='  h-8 px-3 w-36 ml-4 pt-1 bg-gray-400'>Current Search</h3>
+    <h3 className='  h-8 px-3 w-36 ml-4 pt-1 bg-gradient-to-r from-purple-800 to-purple-950 text-white'>Current Search</h3>
     <div className=' mt-5  ml-6 w-26  '>
         {searchFilter.title && (
-            <span className='m p-2 flex items-center mb-2 bg-purple-400'>
+          <div className='flex'> <span className=' p-2   flex gap-3 w-full items-center mb-2 bg-purple-400'>
 {searchFilter.title}
 <img src={assets.cross_icon} alt="cross" className=' h-5 w-5 ml-2 cursor-pointer bg-white  ' onClick={()=>{setSearchFilter({...searchFilter,title:''})}}/>
-            </span>
+            </span></div>
+            
         )}
+        
         {searchFilter.location && (
+            <div className='flex'>
             <span className='  p-2 flex items-center mb-2 bg-purple-400'>
                 {searchFilter.location}
                 {searchFilter.location?<img src={assets.cross_icon} alt="cross" className='h-5 w-5 ml-2 cursor-pointer bg-white ' onClick={()=>{setSearchFilter({...searchFilter,location:''})}}/>:""
 }
             </span>
+            </div>
         )}
     </div>
     </div>
@@ -117,21 +121,21 @@ const paginatedJobs = filteredJobs.slice(currentPage * 6, currentPage * 6 + 6);
         
 }
             </div  >
-        <div className="px-3  ">
-          <button onClick={()=>{setClear()}} className='bg-purple-500 p-2 rounded-lg text-white ml-4'>Clear Filter</button>
-  <div className=" shadow-purple-300 shadow-2xl m-3 p-3 rounded-lg md:w-full">
+        <div className="px-3   ">
+          <button onClick={()=>{setClear()}} className='bg-gradient-to-r from-purple-800 to-purple-950 p-2 rounded-lg text-white ml-4'>Clear Filter</button>
+  <div className="     m-3 p-3 rounded-lg md:w-full">
     <h4 className="text-3xl"> Categories</h4>
     <ul>
       {JobCategories.map((category, idx) => (
         <li key={idx} className="flex items-center gap-3 my-5 w-full">
           <input type="checkbox" id={category} className='h-6 w-6' onChange={()=>{handleCategoryChange(category)}} checked={categoryFilter.includes(category)}/>
-          <label htmlFor={category} className='text-xl'>{category}</label>
+          <label htmlFor={category} className='text-lg'>{category}</label>
         </li>
       ))}
     </ul>
   </div>
 
-  <div className=" shadow-purple-300 shadow-2xl m-3 p-3 rounded-lg md:w-full">
+  <div className="     m-3 p-3 rounded-lg md:w-full">
     <h4 className="text-3xl"> Locations</h4>
     <ul>
          
@@ -140,7 +144,7 @@ const paginatedJobs = filteredJobs.slice(currentPage * 6, currentPage * 6 + 6);
       {JobLocations.map((Location, idx) => (
         <li key={idx} className="flex items-center gap-3 my-5 w-full">
           <input type="checkbox" id={Location} className='h-6 w-6' onChange={( )=>{handleLocationChange(Location)}} checked={locationFilter.includes(location)}/>
-          <label htmlFor={Location}className='text-xl'>{Location}</label>
+          <label htmlFor={Location}className='text-lg'>{Location}</label>
         </li>
       ))}
     </ul>
@@ -151,7 +155,7 @@ const paginatedJobs = filteredJobs.slice(currentPage * 6, currentPage * 6 + 6);
 
  {/* {list} */}
   <div> 
- <h1 className='flex justify-center text-3xl font-bold shadow-xl p-4 m-4 '>Latest Jobs</h1>   
+ <h1 className='flex justify-center text-3xl font-bold shadow-xl p-4 m-4 bg-gradient-to-r from-purple-800 to-purple-950 mt-0 rounded-lg text-white '>Latest Jobs</h1>   
         <div id='joblist' className='grid   gap-3 m-4 w-full max-sm:grid-cols-1 max-sm:m-3 max-sm:p-2  md:grid-cols-2'> 
      
   
@@ -160,13 +164,12 @@ const paginatedJobs = filteredJobs.slice(currentPage * 6, currentPage * 6 + 6);
                  
                 return (
                      
-                    <div key={idx} className='border border-gray-500 shadow-2xl p-4 rounded-lg w-full hover:shadow-xl transition-all duration-300 ease-in-out mx-sm:h-1/2'> 
-                    
-                        <img src={item.companyId.image}/>
+<div key={idx} className='border border-gray-500 shadow-2xl p-4 rounded-lg h-64 w-full ml-4 hover:shadow-xl transition-all duration-300 ease-in-out max-lg:flex-col'>                    
+                        <img className="h-16 w-16" src={item.companyId.image}/>
                         <h3 className='text-lg font-semibold'>{item.title}</h3>
                         <p className='text-sm text-gray-600'>{item.companyId.name}</p>
                         <p className='text-sm text-gray-600'>{item.location}</p>
- <p   dangerouslySetInnerHTML={{__html:item.description.slice(0,150)} } className='text-sm text-gray-600 max-sm:hidden'></p>
+ {/* <p   dangerouslySetInnerHTML={{__html:item.description.slice(0,150)} } className='text-sm text-gray-600 max-sm:hidden'></p> */}
  <Link to={`/apply-job/${item._id}`}> 
  <button className='bg-blue-500 rounded-2xl p-2 m-2 text-white' onClick={applyHandler}> {appliedJobs.includes(item._id)?"Applied":"Apply Now"}</button>
   

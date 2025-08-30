@@ -81,7 +81,7 @@ console.log("user applications are",userApplications)
 
   return (
     <>
-      <div className='flex justify-between p-4 rounded-lg shadow-lg m-10 max-sm:flex-col border-2 border-blue-500 bg-blue-200'>
+      <div className='flex justify-between p-2 rounded-lg shadow-lg m-10 max-sm:flex-col border-2 border-blue-500 bg-blue-200'>
         <div className='bg-blue-300 flex gap-5 p-5 max-sm:px-3 rounded-lg'>
           <img src={selectJob?.JobbyId?.companyId?.image} className='    h-12 w-12  rounded-2xl bg-purple-800 p-1' alt="company logo"/>
           <div>
