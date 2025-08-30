@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import ChatBot from './components/ChatBot'
  const App = () => {
-  const [loading,setLoading]=useState(false);
+  const [loading,setLoading]=useState(true);
   const {showRecruiterLogin,companyToken}=useContext(AppContext)
 useEffect(()=>{
 const timer=setTimeout(()=>
