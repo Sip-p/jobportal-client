@@ -143,7 +143,7 @@ const paginatedJobs = filteredJobs.slice(currentPage * 6, currentPage * 6 + 6);
  
       {JobLocations.map((Location, idx) => (
         <li key={idx} className="flex items-center gap-3 my-5 w-full">
-          <input type="checkbox" id={Location} className='h-6 w-6' onChange={( )=>{handleLocationChange(Location)}} checked={locationFilter.includes(location)}/>
+          <input type="checkbox" id={Location} className='h-6 w-6' onChange={( )=>{handleLocationChange(Location)}} checked={locationFilter.includes(Location)}/>
           <label htmlFor={Location}className='text-lg'>{Location}</label>
         </li>
       ))}
