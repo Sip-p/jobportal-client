@@ -4,7 +4,7 @@ import { assets } from '../assets/assets'
 const AppDownLoad = () => {
   return (
     <div className='flex justify-center m-4'> 
-        <div className=' flex flex-col   justify-center '>
+        {/* <div className=' flex flex-col   justify-center '>
             <h1>DownLoad Mobile App For Better Experience</h1>
             <div className='flex flex-col'>
                 <a href=''>
@@ -15,9 +15,9 @@ const AppDownLoad = () => {
                 </a> 
             </div>
         </div>
-        <div>
-            <img src={assets.app_main_img} alt=''/>
-        </div>
+        <div className=' '>
+            <img src={assets.app_main_img} alt='' className='max-h-72'/>
+        </div> */}
     </div>
   )
 }

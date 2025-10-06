@@ -15,13 +15,16 @@ import 'react-quill/dist/quill.snow.css';
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import ChatBot from './components/ChatBot'
+// import {ScrollTrigger} from "gsap/ScrollTrigger"
+// gsap.registerPlugin(ScrollTrigger)
  const App = () => {
   const [loading,setLoading]=useState(true);
   const {showRecruiterLogin,companyToken}=useContext(AppContext)
+  
 useEffect(()=>{
 const timer=setTimeout(()=>
   {setLoading(false)
- },5000)
+ },3000)
  return ()=>{clearTimeout(timer)}
 
 },[])

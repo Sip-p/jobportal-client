@@ -18,6 +18,11 @@
         }
     }
 }
+
+@utility flex-center{
+@apply flex justify-center items-center;
+}
+
     .star {
         width: 10px; /* Or any desired size */
         height: 10px;
@@ -35,3 +40,5 @@
             39% 35% /* Back to first segment */
         );
     }
+
+ 

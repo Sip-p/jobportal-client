@@ -2,7 +2,7 @@ import React from 'react'
 
 const SideBar = () => {
   return (
-    <div className='border border-gray-300 shadow-lg p-4 rounded-lg w-full lg:w-1/4'> 
+    <div className='border   border-gray-300 shadow-lg p-4 rounded-lg w-full lg:w-1/4'> 
  <input type='text' placeholder='Search by Category' className='w-full p-2 rounded mb-4 outline-none text-black' />
  <div className='flex flex-col gap-2 '>
     <span className='flex gap-2'> 

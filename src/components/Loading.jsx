@@ -24,3 +24,18 @@ const Loading = () => {
 }
 
 export default Loading
+// import { gsap } from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import SplitText from "./path/to/SplitText"; // local path to SplitText.js
+
+// gsap.registerPlugin(ScrollTrigger, SplitText);
+
+// import React from 'react'
+
+// const Loading = () => {
+//   return (
+//     <div className="bg-black text-white flext-center">Loading</div>
+//   )
+// }
+
+// export default Loading
