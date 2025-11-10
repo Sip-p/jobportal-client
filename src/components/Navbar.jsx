@@ -26,7 +26,7 @@ const Navbar = () => {
     <div className="flex gap-4 items-center max-sm:text-xs">
       <button onClick={()=>setShowRecruiterLogin(true)} className="text-gray-600">Recruiter Login</button>
       <button
-        className="bg-blue-600 px-6 sm:px-9 py-2 rounded-full"
+        className="bg-blue-600 px-6 sm:px-9 py-2 rounded-full text-white"
         onClick={(e) => openSignIn()}
       >
         Login
